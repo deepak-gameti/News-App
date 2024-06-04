@@ -31,6 +31,7 @@ const Navbar = () => {
             </div>
                 <hr />
             <div className='px-20 mx-auto flex items-center h-10 gap-8 text-sm font-medium tracking-wide'>
+               <Link to="/">Home</Link>
                <Link to="/business">business</Link>
                <Link to="/entertainment">entertainment</Link>
                <Link to="/general">general</Link>

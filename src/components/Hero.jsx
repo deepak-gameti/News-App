@@ -13,27 +13,40 @@ export class Hero extends Component {
         }
     }
 
-    async componentDidMount() {
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&apiKey=106eeac70d6f4fb3ab2b2992f1e61b39&pageSize=${this.props.pageSize}&page=${this.state.page}`
+    async fetchArticles() {
+        const { category, pageSize } = this.props;
+        const { page } = this.state;
+        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&apiKey=106eeac70d6f4fb3ab2b2992f1e61b39&pageSize=${pageSize}&page=${page}`
         let data = await fetch(url);
         let jsonData = await data.json();
-        this.setState({ articles: jsonData.articles })
-        this.setState({totalResults: jsonData.totalResults})
-        console.log(jsonData)
+        this.setState({ articles: jsonData.articles,
+            totalResults: jsonData.totalResults,
+         });
+        console.log(jsonData);
     }
 
-    prev = () => {
-        console.log('prev')        
+    async componentDidMount() {
+        this.fetchArticles();
     }
 
-    next = () => {
-        console.log('next')
-       
-    }
+    prev = async () => {
+        if (this.state.page > 1) {
+          await this.setState((prevState) => ({ page: prevState.page - 1 }));
+          this.fetchArticles();
+        }
+      }
+
+    next = async () => {
+        if (this.state.page < Math.ceil(this.state.totalResults / this.props.pageSize)) {
+          await this.setState((prevState) => ({ page: prevState.page + 1 }));
+          this.fetchArticles();
+        }
+      }
 
 
     render() {
         return (
+            <div className='w-full h-full dark:bg-slate-800 dark:text-slate-100'>
             <div className="container pt-20">
                 <h1 className='text-5xl pb-10 text-center dark:text-white'>Today's top headlines</h1>
                 <div className="row grid grid-cols-4 gap-5">
@@ -43,10 +56,11 @@ export class Hero extends Component {
                         </div>
                     })}
                 </div>
-                    <div className="mt-10 flex gap-10 justify-between">
+                    <div className="pb-10 mt-10 flex gap-10 justify-between">
                         <button onClick={this.prev}  className={`h-12 w-40 font-semibold dark:bg-slate-100 dark:text-slate-900 border bg-slate-800 text-slate-100 text-2xl rounded-lg active:bg-slate-700 transition`}>previous</button>
                         <button onClick={this.next} className='h-12 w-40 font-semibold dark:bg-slate-100 dark:text-slate-900 border bg-slate-800 text-slate-100 text-2xl rounded-lg active:bg-slate-700 transition'>next</button>
                     </div>
+            </div>
             </div>
         )
     }
