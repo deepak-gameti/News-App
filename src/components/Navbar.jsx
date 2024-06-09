@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     const [darkMode, setDarkMode] = useState(false);
+    const [show, setShow] = useState(false);
+    // const [catToggle, setCatToggle] = useState(false);
+
 
     useEffect(() => {
         if (darkMode) {
@@ -19,8 +22,10 @@ const Navbar = () => {
     return (
         <nav className='dark:text-slate-50 dark:bg-slate-800'>
             <div className='flex justify-between items-center max-w-7xl mx-auto h-20 '>
-                <div className='text-3xl font-extrabold tracking-widest'>NA</div>
-                <h1 className='text-4xl font-semibold'>News App</h1>
+                <div>
+                    <h1 className='text-4xl font-semibold'>News App</h1>
+                </div>
+
 
                 <div className='flex items-center gap-10 justify-center'>
                     <Switch
@@ -39,15 +44,23 @@ const Navbar = () => {
                 </div>
             </div>
             <hr />
-            <div className='px-20 mx-auto flex items-center h-10 gap-8 text-sm font-medium tracking-wide'>
+            <div className='px-20 mx-auto flex justify-center items-center h-10 gap-8 text-sm font-medium tracking-wide'>
                 <Link to="/">Home</Link>
-                <Link to="/business">business</Link>
-                <Link to="/entertainment">entertainment</Link>
-                <Link to="/general">general</Link>
-                <Link to="/health">health</Link>
-                <Link to="/science">science</Link>
-                <Link to="/sports">sports</Link>
-                <Link to="/technology">technology</Link>
+                <Link onClick={() => { setShow(!show) }}>Category <i className={`fa-solid fa-angle-down transition-transform ${show ? 'rotate-180' : ''}`}></i></Link>
+                <Link to="/about">About Us</Link>
+                <Link to="/contact">Contact</Link>
+                {show &&
+                    <ul className='bg-slate-200 p-10 flex flex-col gap-4 absolute top-[120px] right-[850px] w-48 dark:bg-slate-700 rounded-md backdrop-blur-lg'>
+                        <li className='text-sm text-slate-600 hover:text-slate-800 hover:text-[16px] dark:text-slate-50 transition-all'><Link to="/business">business</Link></li>
+                        <li className='text-sm text-slate-600 hover:text-slate-800 hover:text-[16px] dark:text-slate-50 transition-all'><Link to="/entertainment">entertainment</Link></li>
+                        <li className='text-sm text-slate-600 hover:text-slate-800 hover:text-[16px] dark:text-slate-50 transition-all'><Link to="/general">general</Link></li>
+                        <li className='text-sm text-slate-600 hover:text-slate-800 hover:text-[16px] dark:text-slate-50 transition-all'><Link to="/health">health</Link></li>
+                        <li className='text-sm text-slate-600 hover:text-slate-800 hover:text-[16px] dark:text-slate-50 transition-all'><Link to="/science">science</Link></li>
+                        <li className='text-sm text-slate-600 hover:text-slate-800 hover:text-[16px] dark:text-slate-50 transition-all'><Link to="/sports">sports</Link></li>
+                        <li className='text-sm text-slate-600 hover:text-slate-800 hover:text-[16px] dark:text-slate-50 transition-all'><Link to="/technology">technology</Link></li>
+                    </ul>
+
+                }
             </div>
             <hr />
         </nav>

@@ -4,7 +4,7 @@ export class NewsItem extends Component {
     render() {
         return (
             <div className="max-w-sm overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-900 dark:border-gray-700">
-                <img className="rounded-t-lg" src={this.props.image} alt="" />
+                <img className="rounded-t-lg hover:scale-110 transition-all" src={this.props.image} alt="" />
                 <div className="p-3 dark:bg-slate-900">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{this.props.title}</h5>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{this.props.description}</p>

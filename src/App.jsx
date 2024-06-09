@@ -3,13 +3,26 @@ import Navbar from "./components/Navbar"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React, { Component } from 'react'
 import Footer from "./components/Footer";
+import Contact from "./components/Contact";
+import About from "./components/About";
+import Home from "./components/Home";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <><Navbar/><Hero pageSize={20} category={'home'} key={'8'} /><Footer/></>,
+    element: <><Navbar/><Home/><Footer/></>,
     key : 8
+  },
+  {
+    path: "/about",
+    element: <><Navbar/><About/><Footer/></>,
+    key : 9
+  },
+  {
+    path: "/contact",
+    element: <><Navbar/><Contact key={'10'}/><Footer/></>,
+    key : 10
   },
   {
     path: "/business",
