@@ -10,10 +10,10 @@ const Footer = () => {
   	 		<div className="footer-col">
   	 			<h4>company</h4>
   	 			<ul>
-  	 				<li><a href="#">about us</a></li>
-  	 				<li><a href="#">our services</a></li>
-  	 				<li><a href="#">privacy policy</a></li>
-  	 				<li><a href="#">Help & Support</a></li>
+  	 				<li><Link to="/">Home</Link></li>
+  	 				<li><Link to="/about">About Us</Link></li>
+  	 				<li><Link to="/contact">Contact</Link></li>
+  	 				{/* <li><a href="#">Help & Support</a></li> */}
   	 			</ul>
   	 		</div>
   	 		<div className="footer-col">

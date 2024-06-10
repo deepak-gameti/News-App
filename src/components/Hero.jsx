@@ -29,7 +29,7 @@ export class Hero extends Component {
 
         const { category, pageSize } = this.props;
         const { page } = this.state;
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=106eeac70d6f4fb3ab2b2992f1e61b39&pageSize=${pageSize}&page=${page}`
+        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${this.props.apiKey}&pageSize=${pageSize}&page=${page}`
         let data = await fetch(url);
         this.setState({ progress: 50 });
         let jsonData = await data.json();
@@ -66,7 +66,7 @@ export class Hero extends Component {
 
         const { category, pageSize } = this.props;
         const { page } = this.state;
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=106eeac70d6f4fb3ab2b2992f1e61b39&pageSize=${pageSize}&page=${page}`
+        let url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${this.props.apiKey}&pageSize=${pageSize}&page=${page}`
         let data = await fetch(url);
         this.setState({ progress: 50 });
         let jsonData = await data.json();
